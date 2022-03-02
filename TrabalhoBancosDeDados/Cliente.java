@@ -13,12 +13,14 @@ package trabalho;
 
 public class Cliente {
 	private String nome;
+	private String idade;
 	private String pais;
 	private String saldo;
 	
-	public Cliente(String nome, String pais, String saldo) {
+	public Cliente(String nome, String idade, String pais, String saldo) {
 		super();
 		this.nome = nome;
+		this.idade = idade;
 		this.pais = pais;
 		this.saldo = saldo;
 	}
@@ -33,6 +35,14 @@ public class Cliente {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public String getIdade() {
+		return idade;
+	}
+
+	public void setIdade(String idade) {
+		this.idade = idade;
 	}
 
 	public String getPais() {
@@ -50,11 +60,18 @@ public class Cliente {
 	public void setSaldo(String saldo) {
 		this.saldo = saldo;
 	}
-
+	
 	@Override
 	public String toString() {
-		return "Ficha do Cliente:\n-----------------\nNome: " + nome + "\nPais: "+pais+ "\nSaldo: "+saldo+ "\n-----------------";
+		return "Ficha do Cliente:\n-----------------\nNome: " + nome + "\nPais: "+pais+ "\nIdade: "+idade+ "\nSaldo: "+saldo+"\n-----------------";
 		
 	}
+	
+	public void getInformacoes(String nome, String pais, String idade,String saldo){
+        System.out.println("Ficha do Cliente:\n-----------------\nNome: " + nome);
+        System.out.println("Pais: " + pais);
+        System.out.println("Idade: "+ idade);
+        System.out.println("Saldo: " + saldo + "\n-----------------");
+    }
 	
 }
