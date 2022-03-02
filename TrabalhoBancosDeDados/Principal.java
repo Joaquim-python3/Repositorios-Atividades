@@ -3,6 +3,7 @@ package trabalho;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +14,12 @@ public class Principal {
 
 	public static void main(String[] args) {
 		Scanner entrada = new Scanner(System.in);
+
 		List<Cliente> listaClientes = new ArrayList<Cliente>();
 		String caminhoArq = "C:/Users/LENOVO/Downloads/test.csv";
-		String linha = "", procuraNome = "";
+		String linha = "";
+		String s = "";
+		int index = 0;
 		boolean continuaBusca = true;
 
 		try {
@@ -26,32 +30,59 @@ public class Principal {
 
 				String nome = listaDados[2];
 				String pais = listaDados[4];
-				String dinheiro = listaDados[12];
+				String idade = listaDados[6];
+				String dinheiro = listaDados[8];
 
-				Cliente c = new Cliente(nome, pais, dinheiro);
+				Cliente c = new Cliente(nome, pais, idade, dinheiro);
 				listaClientes.add(c);
-
+				
 			}
 
 			do {
-
+				
 				System.out.println("Digite um nome para pesquisar e exit para sair: ");
-				procuraNome = entrada.nextLine();
-				System.out.println("Nome procurado: " + procuraNome);
+				String procuraNome = entrada.nextLine();
 
 				if (!procuraNome.toLowerCase().equalsIgnoreCase("exit")) {
+					
+//					System.out.println("Digite o país para pesquisar: ");
+//					String procuraPais = entrada.nextLine();
+					
+					System.out.println("Nome procurado: " + procuraNome);
+
 					System.out.println("Buscando " + procuraNome + " em " + listaClientes.size());
-					int index = buscaBinaria(listaClientes, procuraNome);
-
-					if (index == -1) {
-						System.out.println("Nome não encontrado");
-
-					} else {
-
-						Cliente cc = new Cliente();
-						cc.toString();
-
+					
+					for(Cliente c: listaClientes) {
+						index++;
+						if(c.getNome().equalsIgnoreCase(procuraNome)) {
+//							if(c.getPais().equalsIgnoreCase(procuraPais)) {
+								
+								System.out.println("index: "+index);
+								s += c.toString() + "\n";
+//							}
+						}
 					}
+					
+					FileWriter w = new FileWriter("C:/Users/LENOVO/Downloads/file.txt");
+					w.write(s);
+					w.close();
+
+//					int index = buscaBinaria(listaClientes, procuraNome);
+//
+//					if (index == -1) {
+//						System.out.println("Nome não encontrado");
+//
+//					} else {
+//						
+//						Cliente cli = new Cliente();
+//						cli.getInformacoes(
+//								listaClientes.get(index).getNome(), 
+//								listaClientes.get(index).getPais(), 
+//								listaClientes.get(index).getSaldo());
+//						System.out.println("Busca finalizada, comparações realizadas: "+contador);
+//						
+//					}
+
 				} else {
 					continuaBusca = false;
 				}
